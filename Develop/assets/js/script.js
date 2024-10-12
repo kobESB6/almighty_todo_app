@@ -27,11 +27,32 @@ function createTaskCard(task) {
      </div>`);
 // Event Listener for delete button
 taskCard.find('.delete-task').click(handleDeleteTask);
+return taskCard;
 }
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
+    //clear the task list
+    $('#todo-cards, #in-progress-cards, #done-cards').empty();
 
+    //loop through the task list and render each task
+    taskList.forEach(task => {
+        let taskCard = createTaskCard(task);
+
+        if (task.status === 'todo') {
+            $('#todo-cards').append(taskCard);
+        } else if (task.status === 'in-progress') {
+           $('#in-progress-cards').append(taskCard);
+        } else if (task.status === 'done') {
+          $('#done-cards').append(taskCard);  
+        } 
+        }
+    );
+// Make task cards draggable
+$('.task-card').draggable({
+    revert: "invalid",  // revert the card if it is not dropped in a droppable area
+    helper: "clone"    // create a clone of the card to drag
+});
 }
 
 // Todo: create a function to handle adding a new task
