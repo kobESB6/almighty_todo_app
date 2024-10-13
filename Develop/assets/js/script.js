@@ -57,7 +57,31 @@ $('.task-card').draggable({
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event){
+    event.preventDefault(); // Preventtyhe form from submitting  the traditional way
+    // Get task details from the form
+    const title = $('#task-title').val();
+    const description = $('#task-description').val();
+    const deadline = $('#task-deadline').val();
 
+    //Create a new task object
+    const newtask = {
+        qd: generateTaskId(),
+        title: title,
+        description: description,
+        deadline: deadline,
+        status: 'todo'               // New tasks starts in the 'To DO' column
+    };
+
+    // Add the new task to the task list
+    taskList.push(newTask);
+    localStorage.setItem('tasks', JSON.stringify(taskList)); // Save the task list to local storage
+
+    //Close the modal for and clear the form fields
+    $('#formModal').modal('hide');
+    $('#task-form')[0].reset()
+
+    //Re Render the task list
+    renderTaskList();
 }
 
 // Todo: create a function to handle deleting a task
