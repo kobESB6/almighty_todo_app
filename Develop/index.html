@@ -22,11 +22,11 @@
   </header>
   <div class="container">
     <div class="text-center mb-5">
-      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#formModal">Add Task</button>
+      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Task</button>
     </div>
     <!-- Todo: Create a modal with a form to add tasks -->
-  <div class="modal fade" id="formModal" tableindex="-1" aria-labelledby="formModalLabel" aria="true">
-    <div class="modal-dialog">
+  <!-- <div class="modal fade" id="formModal" tableindex="-1" aria-labelledby="formModalLabel" aria="true">
+    <div class="modal-dialog modal-sm" >
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="formModalLabel">Add New Task</h5>
@@ -37,9 +37,59 @@
     <form id="task-form">
       <div class="mb-3">
         <label for="task-title" class="form-label">Title</label>
-    </form>
-</div>
+        <input type="text" class="form-control" id="task-title" required />
+      </div>
+      <div class="mb-3">
+        <label for="task-deadline" class="form-label">Deadline</label>
+        <input type="text" class="form-control" id="task-deadline" required />
+      </div>
+       <button type="submit" class="btn btn-primary">Save Task</button>
+      </form>
+    </div>
+  </div>
+</div> -->
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Task</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!--Task Title-->
+      <div class="modal-body">
+        <div class="row g-2"> 
+          <div class="col-sm">
+          <label for="Task Title" class="row-sm-1 row-form-label row-form-label-sm">Task Title</label> 
+            <input type="text" class="form-control" aria-label="Task Title" id="taskTitle">
+          </div>
+          <!-- Task Due Date -->
+          <div class=" col-sm">
+          <label for="Task Due Date" class="row-sm-1 row-form-label row-form-label-sm">Task Due Date</label>
+            <input
+            placeholder= "Due Date"
+            autocomplete="off"
+            type="text"
+            class="form-control mb-1"
+            id="taskDueDate"
+          />
+          </div>
+        </div>
+        <!-- Task Description -->
+        <div class="row g-1 align-items-center">
+          <div class="col-auto">
+            <label for="Task Description" class="col-form-label">Task Description</label>
+            <input type="text" class="form-control" aria-label="Task Description" id="taskDescription">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Add New Task</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
     <div class="row swim-lanes text-center justify-content-between">
       <div class="col-12 col-lg-4 d-flex">

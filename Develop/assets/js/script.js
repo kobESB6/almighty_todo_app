@@ -4,14 +4,15 @@ let nextId = JSON.parse(localStorage.getItem("nextId"));
 
 // Todo: create a function to generate a unique task id
 function generateTaskId() { 
-    if (nextID === 0) {       // if nextID is in local storage set it to 1
-        nextID = 1;             
-    } else {                 // else increment nextID by 1
-        nextID++;
+    if (nextID === null) { // if nextID is null
+        nextID = 1; {       // if nextID is in local storage set it to 1
+      nextID;  // set id to nextID;             
+     nextID++;       // else increment nextID by 1
+       
     }
 localStorage.setItem("nextID", JSON.stringify(nextID)); // save nextID to local storage
 
-return nextID; // return nextID
+return id; // return nextID
 }
 
 // Todo: create a function to create a task card
@@ -32,6 +33,7 @@ return taskCard;
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
+    let taskList = JSON.parse(localStorage.getItem("tasks")) || []; // Get the task list from local storage or an empty array if no tasks are saved
     //clear the task list
     $('#todo-cards, #in-progress-cards, #done-cards').empty();
 
@@ -106,7 +108,7 @@ function handleDrop(event, ui) {
     }
 };
 
-//Save the updae task list to local storage
+//Save the update task list to local storage
 localStorage.setItem('tasks', JSON.stringify(taskList));
 // Re render the task list
 renderTaskList();
@@ -125,6 +127,25 @@ $(document).ready(function () {
         accept: '.task-card',
         drop: handleDrop            // Call the handleDrop function when a task is dropped
 });
-// Set up the date picker for the due date field
-$('task-deadline').datepicker();
+// Set up the date picker for the due date field;
 });
+$(document).ready(function () {
+    // Render tasks on page load
+    renderTaskList();
+  
+    // Attach form submit event to add new task
+    $('#taskForm').on('submit', handleAddTask);
+  
+    // Make columns (lanes) droppable
+    $('.lane').droppable({
+      accept: '.draggable',
+      drop: handleDrop,
+    });
+  
+    // Initialize the date picker
+    $('#taskDueDate').datepicker({
+      changeMonth: true,
+      changeYear: true,
+    });
+  });
+  
